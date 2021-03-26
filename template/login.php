@@ -6,10 +6,16 @@
   <title>Расписание занятий</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-    <link rel="stylesheet" href="template/css/bootstrap.min.css">
-    <link rel="stylesheet" href="template/css/font-awesome.min.css">
-    <link rel="stylesheet" href="template/css/ionicons.min.css">
-    <link rel="stylesheet" href="template/css/AdminLTE.min.css">
+  <link rel="stylesheet"
+href="template/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="template/css/font-
+awesome.min.css">
+
+<link rel="stylesheet"
+href="template/css/ionicons.min.css">
+<link rel="stylesheet"
+href="template/css/AdminLTE.min.css">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
@@ -23,7 +29,7 @@
   <div class="login-box-body">
     <p class="login-box-msg"><?=$message;?></p>
 
-    <form action="auth.php" method="post">
+    <form action="../auth.php" method="post">
       <div class="form-group has-feedback">
         <input name="login" type="text" class="form-control" placeholder="Логин">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -47,14 +53,5 @@
 <script src="template/js/jquery.min.js"></script>
 <script src="template/js/bootstrap.min.js"></script>
 
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
-    });
-  });
-</script>
 </body>
 </html>

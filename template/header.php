@@ -46,13 +46,13 @@
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="hidden-xs">Здравствуйте, Джон Смит Тимофеевич</span>
+              <span class="hidden-xs">Здравствуйте, <?=$_SESSION['fio'];?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
                 <p>
-                  Джон Смит Тимофеевич
-                  <small>Администратор</small>
+                  <?= $_SESSION['fio'];?>
+                  <small><?= $_SESSION['roleName'];?></small>
                 </p>
               </li>
               <!-- Menu Footer-->
