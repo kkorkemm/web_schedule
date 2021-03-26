@@ -32,4 +32,25 @@
             
             exit();
         }
+
+        if (isset($_POST['saveStudent'])) {
+            $student = new Student();
+            $student->gruppa_id = Helper::clearInt($_POST['gruppa_id']);
+            $student->user_id = $user->user_id;
+            $student->num_zach = Helper::clearString($_POST['num_zach']);
+
+            if ((new StudentMap())->save($user, $student)) {
+                header('Location: profile-student.php?id='.$student->user_id);
+            } 
+            else {
+                if ($student->user_id) {
+                    header('Location: add-student.php?id='.$student->user_id);
+                } 
+                else {
+                    header('Location: add-student.php');
+                }
+            }
+            
+            exit();
+        }
     }
