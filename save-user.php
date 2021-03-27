@@ -38,6 +38,9 @@
             $student->gruppa_id = Helper::clearInt($_POST['gruppa_id']);
             $student->user_id = $user->user_id;
             $student->num_zach = Helper::clearString($_POST['num_zach']);
+            
+            // print_r($student);
+            // print_r($user);
 
             if ((new StudentMap())->save($user, $student)) {
                 header('Location: profile-student.php?id='.$student->user_id);

@@ -10,7 +10,7 @@
     require_once 'template/header.php';
 ?>
 
-<section class="content-header">
+<section class="content-header"> 
     <h1><?=$header;?></h1>
     <ol class="breadcrumb">
         <li><a href="/index.php"><i class="fa fa-dashboard"></i> Главная</a></li>
@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
             <label>Группа</label>
-            <select class="form-control" name="otdel_id">
+            <select class="form-control" name="gruppa_id">
                 <?= Helper::printSelectOptions($student->gruppa_id, (new GruppaMap())->arrGruppas());?>
             </select>
         </div>
