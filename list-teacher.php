@@ -1,6 +1,11 @@
 <?php
     require_once 'secure.php';
-    $size = 1;
+    if (!Helper::can('admin') && !Helper::can('manager')) {
+        header('Location: 404.php');
+        exit();
+    }
+
+    $size = 5;
     if (isset($_GET['page'])) {
         $page = Helper::clearInt($_GET['page']);
     } 
@@ -28,7 +33,7 @@
             </section>
         
             <div class="box-body">
-                <a class="btn btn-success" href="add-teacher.php">Добавить преподавателя</a>
+                <a class="btn btn-success" href="Teacher/add-teacher.php">Добавить преподавателя</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
