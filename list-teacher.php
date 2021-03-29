@@ -33,7 +33,7 @@
             </section>
         
             <div class="box-body">
-                <a class="btn btn-success" href="Teacher/add-teacher.php">Добавить преподавателя</a>
+                <a class="btn btn-success" href="add-teacher.php">Добавить преподавателя</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
