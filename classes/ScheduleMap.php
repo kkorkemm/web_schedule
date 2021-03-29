@@ -76,7 +76,7 @@
                 $arrDay = [];
                 $arrDay['id'] = $day->day_id;
                 $arrDay['name'] = $day->name;
-                $arrDay['schedule'][] = $this->findSubjectsStudent($id, $day->day_id);
+                $arrDay['lesson'] = $this->findSubjectsStudent($id, $day->day_id);
 
                 $result[] = $arrDay;
             }

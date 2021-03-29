@@ -9,6 +9,7 @@
     elseif ($userIdentity == UserMap::STUDENT) {
         //здесь должен быть ваш код
         $schedules = (new ScheduleMap())->findByUserId($_SESSION['id']);
+        // print_r($schedules);
     } 
     else {
         $schedules = null;
@@ -47,12 +48,12 @@
                                     <?php endforeach; ?>
                                 <?php endforeach; ?>
                             
-                            <?php elseif ($day['schedule']) : ?>
-                                <?php foreach ($day['schedule'] as $schedule) : ?>
+                            <?php elseif ($day['lesson']) : ?>
+                                <?php foreach ($day['lesson'] as $lesson) : ?>
                                         <tr>
-                                            <td><?= $schedule['lesson_num']; ?></td>
-                                            <td><?= $schedule['subject']; ?></td>
-                                            <td><?= $schedule['classroom']; ?></td>
+                                            <td><?= $lesson['lesson_num']; ?></td>
+                                            <td><?= $lesson['subject']; ?></td>
+                                            <td><?= $lesson['classroom']; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
 
