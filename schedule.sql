@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Мар 27 2021 г., 20:23
+-- Время создания: Мар 30 2021 г., 15:26
 -- Версия сервера: 8.0.19
 -- Версия PHP: 7.4.14
 
@@ -38,7 +38,7 @@ CREATE TABLE `classroom` (
 --
 
 INSERT INTO `classroom` (`classroom_id`, `name`, `active`) VALUES
-(1, '1310', 1),
+(1, '1311', 1),
 (2, '2404', 1),
 (3, '1410', 1),
 (4, '1202', 1),
@@ -108,7 +108,9 @@ CREATE TABLE `gruppa` (
 INSERT INTO `gruppa` (`gruppa_id`, `name`, `special_id`, `date_begin`, `date_end`) VALUES
 (1, 'П-18-45Б', 5, '2018-09-01', '2022-07-01'),
 (2, 'П-18-44гб', 5, '2018-09-01', '2022-07-01'),
-(3, 'П-18-46к', 5, '2018-09-01', '2022-07-01');
+(3, 'П-18-46к', 5, '2018-09-01', '2022-07-01'),
+(4, 'ИС-18-6б', 1, '2018-09-01', '2022-07-01'),
+(5, 'Э-18-31к', 7, '2021-09-01', '2025-07-01');
 
 -- --------------------------------------------------------
 
@@ -146,6 +148,28 @@ CREATE TABLE `lesson_plan` (
   `user_id` bigint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `lesson_plan`
+--
+
+INSERT INTO `lesson_plan` (`lesson_plan_id`, `gruppa_id`, `subject_id`, `user_id`) VALUES
+(3, 1, 6, 5),
+(4, 3, 2, 2),
+(6, 4, 4, 2),
+(8, 2, 5, 3),
+(9, 3, 5, 3),
+(10, 4, 5, 3),
+(11, 1, 12, 15),
+(12, 1, 1, 12),
+(13, 1, 2, 14),
+(14, 1, 11, 11),
+(15, 1, 10, 16),
+(16, 1, 13, 17),
+(17, 1, 8, 10),
+(18, 1, 7, 10),
+(19, 1, 9, 13),
+(20, 1, 4, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -165,7 +189,7 @@ CREATE TABLE `otdel` (
 INSERT INTO `otdel` (`otdel_id`, `name`, `active`) VALUES
 (1, 'Программирование', 1),
 (2, 'Общеобразовательные дисциплины', 1),
-(3, 'Строительство и дизайн', 1),
+(3, 'Дизайн и строительство', 1),
 (4, 'Сервис и экономика', 1);
 
 -- --------------------------------------------------------
@@ -204,6 +228,31 @@ CREATE TABLE `schedule` (
   `lesson_num_id` int NOT NULL,
   `classroom_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `schedule`
+--
+
+INSERT INTO `schedule` (`schedule_id`, `lesson_plan_id`, `day_id`, `lesson_num_id`, `classroom_id`) VALUES
+(3, 6, 1, 2, 5),
+(5, 10, 1, 3, 2),
+(8, 8, 4, 2, 2),
+(9, 14, 3, 3, 1),
+(10, 12, 1, 3, 3),
+(11, 12, 2, 2, 3),
+(12, 12, 3, 4, 3),
+(13, 13, 1, 4, 5),
+(14, 13, 5, 2, 5),
+(15, 13, 5, 4, 5),
+(16, 11, 4, 3, 3),
+(17, 15, 2, 4, 1),
+(18, 15, 4, 1, 1),
+(19, 16, 2, 3, 1),
+(20, 16, 5, 3, 1),
+(21, 17, 1, 5, 1),
+(22, 17, 2, 5, 2),
+(23, 19, 1, 2, 6),
+(24, 12, 4, 5, 4);
 
 -- --------------------------------------------------------
 
@@ -248,8 +297,10 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`user_id`, `gruppa_id`, `num_zach`) VALUES
-(4, 1, '1234567890'),
-(6, 1, '980988098');
+(4, 1, '999999999'),
+(6, 1, '980988098'),
+(8, 1, '999999999'),
+(9, 4, '123456');
 
 -- --------------------------------------------------------
 
@@ -270,11 +321,19 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`subject_id`, `name`, `otdel_id`, `hours`, `active`) VALUES
-(1, 'ООП', 1, 89, 1),
+(1, 'Объектно-ориентированное программирование', 1, 89, 1),
 (2, 'Веб-программирование', 1, 60, 1),
 (3, 'Материаловедение', 3, 31, 1),
 (4, 'Графический дизайн', 3, 34, 1),
-(5, 'Механика', 2, 50, 1);
+(5, 'Механика', 2, 50, 1),
+(6, 'Английский язык', 2, 45, 1),
+(7, 'Статистика', 2, 56, 1),
+(8, 'Высшая математика', 2, 78, 1),
+(9, 'Физическая культура', 2, 52, 1),
+(10, 'Микропроцессорная техника', 1, 60, 1),
+(11, 'Алгоритмизация', 1, 70, 1),
+(12, 'База данных', 1, 40, 1),
+(13, 'Проектирование', 1, 50, 1);
 
 -- --------------------------------------------------------
 
@@ -293,8 +352,16 @@ CREATE TABLE `teacher` (
 
 INSERT INTO `teacher` (`user_id`, `otdel_id`) VALUES
 (2, 1),
+(11, 1),
+(12, 1),
+(14, 1),
+(15, 1),
+(16, 1),
+(17, 1),
 (3, 2),
-(5, 2);
+(5, 2),
+(10, 2),
+(13, 2);
 
 -- --------------------------------------------------------
 
@@ -321,11 +388,21 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `lastname`, `firstname`, `patronymic`, `login`, `pass`, `gender_id`, `birthday`, `role_id`, `active`) VALUES
 (1, 'Смит', 'Джон', 'Тимофеевич', 'admin', '$2y$10$mFlJsQgNvDQ27XfADrMh8O9OQA47f2gLmqYdwGeg8SpsvdoRUX95S', 1, '2000-07-10', 1, 1),
-(2, 'Ахметов', 'Ахмет', 'Ахметович', 'akhmetov', '$2y$10$cZFn384ko2eNOvhWbO6VmeR6O2UnzrJZxHosuk1iLMvivQQZsE14m', 1, '1979-06-21', 3, 1),
+(2, 'Ахметов', 'Рахат', 'Ахметович', 'akhmet', '$2y$10$aOKZx58j3acDWT/7HpezeeLalp2u/DWy8KFKJBHXW1C6vfAqky7sC', 1, '1979-01-01', 3, 1),
 (3, 'Куанышбаева', 'Баян', 'Ермашевна', 'bayan', '$2y$10$ZMVBHGgYLAm4oTnS2MYu2ebW8DiTY.AIiQqbWvuSN.QDJ5hgwWlYO', 2, '1974-03-11', 3, 1),
-(4, 'Жардемова', 'Коркем', 'Болаткызы', 'Korkem', '$2y$10$Kjs9Xr1rE8lD2ar3cZZ5k.PN.6xsIr3G/qtN0J4nA7UBWw1YkFpd2', 2, '2021-01-01', 4, 1),
+(4, 'Жардемова', 'Коркем', 'Болаткызы', 'kuku', '$2y$10$sUkmaIWr1WGbBBNe.4ZGsudbmI6ljQhJFMmK9lcUBmMF3s7A4k9rO', 2, '2002-11-27', 4, 1),
 (5, 'Асебжанова', 'Асель', 'Ернатовна', 'assel', '$2y$10$F7tkx15u64/Z.Ae1/AlL5.THWi6vLorlceM9I7i7b5gaoGJIj0lNu', 2, '1989-02-03', 3, 1),
-(6, 'Жардемова', 'Асем', 'Болаткызы', 'assem', '$2y$10$tbZjcKEcXdPNOOo3RgDNIOUn2Z/hHS78.uUwaloIARJFrU2dauc22', 2, '2006-01-23', 4, 1);
+(6, 'Жардемова', 'Асем', 'Болаткызы', 'assem', '$2y$10$tbZjcKEcXdPNOOo3RgDNIOUn2Z/hHS78.uUwaloIARJFrU2dauc22', 2, '2006-01-23', 4, 1),
+(8, 'Сейткамзина', 'Диана', 'Улановна', 'diana', '$2y$10$bnehoBHdYrajEPY5sebXL.4vDl4Pazg5VTB7OKtc5eK06/j/8xpB.', 2, '2002-08-17', 4, 1),
+(9, 'Жардемова', 'Еркем', 'Болаткызы', 'erkem', '$2y$10$RJTv02euHWMwN5r5lt5Js.MKljIrTelaI9MlkAxITOTcRwswrcM.K', 2, '2012-03-01', 4, 1),
+(10, 'Байменова', 'Асем', 'Рахимовна', 'baymenova', '$2y$10$CvjL8t0EAA/VJc/ydu1ju.qDQNFfI1a2O4/q5I41uQodu71ZiIena', 2, '2021-01-01', 3, 1),
+(11, 'Елубаева', 'Асель', 'Рамазановна', 'elubaeva', '$2y$10$8XgHtHRlps0OAFSrj4GfNutbf9wUEV2EVEjEPc6fy7hxGv6XAN5YW', 2, '2021-01-01', 3, 1),
+(12, 'Абдрахманова', 'Жанна', 'Есимбековна', 'zhanna', '$2y$10$Q7goHXX.MnL1Gu5PC4RJ6uRf4Dkh9iyOIWpeovE9ZmvXVYBvtTw2i', 2, '2021-01-01', 3, 1),
+(13, 'Карабалин', 'Н', 'Ш', 'karabalin', '$2y$10$Nr8GFjqXqEtFcTP1.JiE4.VpS.8mpYxIOvXk6Tzia5nDJk0C9y3Wu', 1, '2021-01-01', 3, 1),
+(14, 'Попов', 'Денис', 'Валентинович', 'denis', '$2y$10$zaOoGScfWH8SKr8rU/u1YeeeeE/EsALSE0ljGuWTBK0vkPKoI1on6', 1, '2021-01-01', 3, 1),
+(15, 'Пешкин', 'Олег', 'Николаевич', 'oleg', '$2y$10$XCgSJk1BK4gvcTyAo8SCXuUKtwZDt9Q2pZ4IA.xqI9NizrpgzI8Ia', 1, '2021-01-01', 3, 1),
+(16, 'Тусупов', 'Ержан', 'Бейсенович', 'erzhan', '$2y$10$YR0vLwb9VwPH/ucfUlPvmeEObttsivOLMHuFESmqKGySS6TjF2T0O', 1, '2021-01-01', 3, 1),
+(17, 'Шарипова', 'Асыл', 'Каратаевна', 'assyl', '$2y$10$7fjCg6mkKHGQRIzhucxLV.Tz1szQBrbCjMp2Hu3lFZquJX7NVO8Ta', 2, '2021-01-01', 3, 1);
 
 --
 -- Индексы сохранённых таблиц
@@ -455,7 +532,7 @@ ALTER TABLE `gender`
 -- AUTO_INCREMENT для таблицы `gruppa`
 --
 ALTER TABLE `gruppa`
-  MODIFY `gruppa_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `gruppa_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `lesson_num`
@@ -467,7 +544,7 @@ ALTER TABLE `lesson_num`
 -- AUTO_INCREMENT для таблицы `lesson_plan`
 --
 ALTER TABLE `lesson_plan`
-  MODIFY `lesson_plan_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `lesson_plan_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT для таблицы `otdel`
@@ -485,7 +562,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT для таблицы `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `schedule_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `schedule_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT для таблицы `special`
@@ -497,13 +574,13 @@ ALTER TABLE `special`
 -- AUTO_INCREMENT для таблицы `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `subject_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `subject_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
